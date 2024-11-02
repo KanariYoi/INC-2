@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Georgia, 'Times New Roman', Times, serif        
+}
+
+body {
+    color: #333;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.content {
+    flex: 1; 
+}
+
+header {
+    height: 130px;
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space out logo and navigation */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    width: 120px; /* Set logo width */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between logo and text */
+    margin-left: 10%;
+}
+
+.header-nav {
+    margin-left: auto; /* Push navigation to the right */
+    margin-right: 10%;
+}
+
+.header-nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.header-nav li {
+    margin-left: 20px; /* Space between links */
+    min-width: 80px; /* Ensure consistent width for all list items */
+}
+
+
+.header-nav a {
+    text-decoration: none; /* Remove underline */
+    color: #fff; /* White text */
+    font-size: 22px;
+    padding: 10px 15px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    transition: color 0.3s; /* Smooth hover effect */
+}
+
+.header-nav a.active {
+    color: #c65102; /* Change text color for the active link */
+    font-weight: bold; /* Make the active link bold */
+    border-bottom: 2px solid #c65102; /* Add underline effect */
+}
+
+.current-page {
+    border-bottom: 2px solid #c65102; /* Underline effect */
+}
+
+.header-nav a:hover {
+    color: #c65102; /* Change background on hover */
+}
+
+.header-nav a[href="login.html"] {
+    background-color: #c65102; /* Dark orange background */
+    color: #fff; /* White text */
+    padding: 10px 20px; /* Padding for button-like appearance */
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color and background */
+}
+
+.header-nav a[href="login.html"]:hover {
+    background-color: #fff; /* Change to white background on hover */
+    color: #c65102; /* Change text to dark orange on hover */
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin-left: -100px;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 1000px;
+    color: black;
+    text-align: center;
+    position: relative; /* For absolute positioning of images */
+    overflow: hidden; /* Prevents overflow from images */
+    animation: bgCycle 20s infinite; /* Set duration and loop infinitely */
+}
+
+
+@keyframes bgCycle {
+    0% {
+        background-image: url('images/reza-ghaemi-5P-eClxMg1s-unsplash.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    33% {
+        background-image: url('images/edwin-gonzalez-iCKFKD-XfrY-unsplash.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    67% {
+        background-image: url('images/sinval-carvalho-WbEibGKHBMY-unsplash.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    100% {
+        background-image: url('images/reza-ghaemi-5P-eClxMg1s-unsplash.jpg'); /* Loop back to the first image */
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+.hero-image {
+
+    width: 100%; /* Set specific width or height */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 1500px; /* Limit height to the hero section */
+    position: absolute; 
+    z-index: -1; 
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0); /* Initially transparent */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    z-index: 1; /* Ensure it’s above the background image */
+}
+
+.hero:hover .overlay {
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent gray on hover */
+}
+
+.text-overlay {
+    padding: 20px 30px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+}
+
+.hero h2 {
+    font-size: 104px ;
+}
+
+.hero p {
+    font-size: 52px;
+}
+
+.services, .contact {
+    padding: 40px;
+    text-align: center;
+}
+
+.services h3{
+    font-size: 56px;
+    margin-top: 120px;
+    margin-bottom: 60px;
+}
+
+.contact h3 {
+    font-size: 56px;
+    margin-bottom: 60px;
+}
+
+.service-list {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+
+.service-item {
+    position: relative; /* Position relative to position dropdown */
+    background-color: #fff;
+    padding: 20px;
+    width: 30%;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center align text */
+    transition: transform 0.3s ease; /* Smooth scaling transition */
+}
+
+.service-item:hover {
+    transform: scale(1.05); /* Enlarge on hover */
+}
+
+.service-item h4{
+    font-size: 36px;
+}
+
+.service-item p{
+    font-size: 20px;
+}
+
+.service-image {
+    max-width: 100%; /* Set max width for images */
+    height: 500px; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for images */
+    margin-top: 10px; /* Space above the image */
+}
+
+
+
+
+.contact-info p {
+    margin: 10px 0;
+    font-size: 22px;
+}
+
+/* Reservation Section */
+.reservation {
+    padding: 40px;
+    text-align: center;
+    margin-top: 60px;
+    background-color: #f4f4f4;
+}
+
+.reservation h3 {
+    font-size: 56px;
+    margin-bottom: 30px;
+}
+
+.reservation p {
+    font-size: 22px;
+    margin-bottom: 40px;
+}
+
+/* Reservation Button */
+.reservation-button {
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: #c65102; /* Dark orange */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.reservation-button:hover {
+    background-color: #fff;
+    color: #c65102;
+    border: 2px solid #c65102; /* Optional: add border on hover */
+}
+
+
+#logout {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #c65102; /* Change to your preferred color */
+}
+
+#logout:hover {
+    text-decoration: underline; /* Underline on hover */
+    cursor: pointer; /* Pointer cursor */
+}   
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 75px;
+    
+}

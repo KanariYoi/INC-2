@@ -1,0 +1,279 @@
+/* General reset and font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+    color: #333;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Header styling */
+header {
+    height: 130px;
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space out logo and navigation */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    width: 120px; /* Set logo width */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between logo and text */
+    margin-left: 10%;
+}
+
+.header-nav {
+    margin-left: auto; /* Push navigation to the right */
+    margin-right: 10%;
+}
+
+.header-nav ul {
+    list-style-type: none; /* Remove bullets */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    display: flex; /* Align list items in a row */
+}
+
+.header-nav li {
+    margin-left: 20px; /* Space between buttons */
+}
+
+.header-nav a {
+    text-decoration: none; /* Remove underline */
+    color: #fff; /* White text */
+    font-size: 22px;
+    padding: 10px 15px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    transition: color 0.3s; /* Smooth hover effect */
+}
+
+.header-nav a.active {
+    color: #c65102; /* Change text color for the active link */
+    font-weight: bold; /* Make the active link bold */
+    border-bottom: 2px solid #c65102; /* Add underline effect */
+}
+
+.header-nav a:hover {
+    color: #c65102; /* Change background on hover */
+}
+
+/* General reset and font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+    color: #333;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  
+}
+
+/* Header styling */
+header {
+    height: 130px;
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space out logo and navigation */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    width: 120px; /* Set logo width */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between logo and text */
+    margin-left: 10%;
+}
+
+.header-nav {
+    margin-left: auto; /* Push navigation to the right */
+    margin-right: 10%;
+}
+
+.header-nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.header-nav li {
+    margin-left: 20px; /* Space between links */
+    min-width: 80px; /* Ensure consistent width for all list items */
+}
+
+.header-nav a.active {
+    color: #c65102; /* Change text color for the active link */
+    font-weight: bold; /* Make the active link bold */
+    border-bottom: 2px solid #c65102; /* Add underline effect */
+}
+
+
+.header-nav a {
+    text-decoration: none; /* Remove underline */
+    color: #fff; /* White text */
+    font-size: 22px;
+    padding: 10px 15px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    transition: color 0.3s; /* Smooth hover effect */
+}
+
+.header-nav a.active {
+    color: #c65102; /* Change text color for the active link */
+    font-weight: bold; /* Make the active link bold */
+    border-bottom: 2px solid #c65102; /* Add underline effect */
+}
+
+.header-nav a:hover {
+    color: #c65102; /* Change background on hover */
+}
+
+
+.header-nav a[href="login.html"] {
+    background-color: #c65102; /* Dark orange background */
+    color: #fff; /* White text */
+    padding: 10px 20px; /* Padding for button-like appearance */
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color and background */
+}
+
+.header-nav a[href="login.html"]:hover {
+    background-color: #fff; /* Change to white background on hover */
+    color: #c65102; /* Change text to dark orange on hover */
+}
+
+/* Main styling for centering */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of viewport */
+}
+
+.registration {
+    width: 80%;
+    max-width: 600px;
+    background: #fff;
+    padding: 40px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.registration h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-size: 18px;
+    color: #333;
+    text-align: left;
+}
+
+form input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form input:focus {
+    border-color: #c65102; /* Change border color on focus */
+}
+
+form button {
+    width: 520px;
+    padding: 10px;
+    background-color: #c65102; /* Button color */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    align-self: center;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+form button:hover {
+    background-color: white; /* Invert background color */
+    color: #c65102; /* Invert text color */
+    border: 1px solid #c65102; /* Add a border to match the hover color */
+}
+
+.login-link {
+    text-align: center; /* Center the text */
+    margin-top: 15px; /* Space above the link */
+    color: black; /* Color of the text */
+    font-size: 14px; /* Font size */
+}
+
+.login-link a {
+    color: #c65102; /* Link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.login-link a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.success-message {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #c3e6cb; /* Border to match the background */
+    border-radius: 5px;
+    display: none; /* Initially hidden */
+}
+
+#error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Push footer to the bottom */
+    width: 100%; /* Full width for footer */
+}
+
+

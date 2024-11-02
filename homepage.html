@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classic Cuts Barbershop</title>
+    <link rel="stylesheet" href="homepage_style.css" />
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Barbershop Logo" class="logo">
+        <h1>Classic Cuts Barbershop</h1>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="homepage.html" class="active" >Home</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li><a href="registration.html">Register</a></li>
+                <li><a href="account.html"  id="accountLink" style="display: none;">Account</a></li> <!-- Initially hidden -->
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+        <div id="user-info" style="display: none">
+            <span id="user-name"></span>
+            <a href="#" id="logout">Logout</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <img src="images/sinval-carvalho-WbEibGKHBMY-unsplash.jpg" alt="Barbershop" class="hero-image" />
+        <div class="overlay"></div>
+        <div class="text-overlay">
+            <h2>Welcome to Classic Cuts</h2>
+            <p><i>Experience the best service in town</p></i>
+        </div>
+    </section>
+
+    <section class="services">
+        <h3>Our Services</h3>
+        <div class="service-list">
+            <div class="service-item">
+                <h4>Haircut</h4>
+                <p>Classic and modern styles tailored just for you.</p>
+                <img src="images/ato-aikins-9ORXOd7g01s-unsplash.jpg" alt="Haircut Image" class="service-image" />
+            </div>
+            <div class="service-item">
+                <h4>Beard Trim</h4>
+                <p>Expert beard shaping and trimming services.</p>
+                <img src="images/antonio-reynoso-_25iXtaa6oY-unsplash.jpg" alt="Beard Trim Image" class="service-image" />
+            </div>
+            <div class="service-item">
+                <h4>Shave</h4>
+                <p>Relax with a traditional hot towel shave.</p>
+                <img src="images/arthur-humeau-Twd3yaqA2NM-unsplash.jpg" alt="Shave Image" class="service-image" />
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h3>Contact Us</h3>
+        <div class="contact-info">
+            <p><strong>Address:</strong> 123 Barber St, Cityville</p>
+            <p><strong>Phone:</strong> (123) 456-7890</p>
+            <p><strong>Email:</strong> info@classiccuts.com</p>
+        </div>
+    </section>
+
+    <section class="reservation">
+        <h3>Make a Reservation</h3>
+        <p>Book your appointment with us today for an exceptional experience!</p>
+        <button class="reservation-button" onclick="window.location.href='reservation.html'">Reserve Now</button>
+    </section>
+
+
+    <script src="main.js"></script> <!-- Include this in all HTML files -->
+
+
+    <script>
+        // Retrieve user data from local storage
+        const user = JSON.parse(localStorage.getItem('user'));
+        console.log(user); // Check the user object in the console to ensure it's correct
+    
+        if (user) {
+            const displayName = user.fullname || user.username || 'Guest'; // Fallback if both are absent
+            document.getElementById('user-name').innerText = `Welcome, ${displayName}!`;
+            document.getElementById('user-info').style.display = 'block'; // Show user info
+        } else {
+            document.getElementById('user-name').innerText = 'Welcome, Guest!'; // Default message for guest
+            document.getElementById('user-info').style.display = 'none'; // Hide user info if not logged in
+        }
+    
+        // Logout functionality
+        document.getElementById('logout').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('user'); // Clear user data from local storage
+            document.getElementById('user-info').style.display = 'none'; // Hide user info
+            window.location.href = 'login.html'; // Redirect to login page
+        });
+
+ // Check if the user is logged in by looking for user data in local storage
+ window.onload = function() {
+        const user = localStorage.getItem("user");
+        if (user) {
+            // If user data exists, show the account link and user info
+            document.getElementById("accountLink").style.display = "block";
+            const userInfo = JSON.parse(user);
+            document.getElementById("user-name").innerText = `Welcome, ${userInfo.username}`;
+            document.getElementById("user-info").style.display = "block";
+            document.querySelector("nav .header-nav a[href='login.html']").style.display = "none"; // Hide the login link
+        } else {
+            // If no user data, hide account link and user info
+            document.getElementById("accountLink").style.display = "none";
+            document.getElementById("user-info").style.display = "none";
+        }
+
+        // Logout functionality
+        document.getElementById("logout").addEventListener("click", function() {
+            localStorage.removeItem("user"); // Clear user data from local storage
+            window.location.href = "homepage.html"; // Redirect to homepage after logout
+        });
+    };
+
+    </script>
+    
+    
+
+    <footer>
+        <p>&copy; 2024 Classic Cuts Barbershop | All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Classic Cuts Barbershop</title>
+    <link rel="stylesheet" href="login_style.css" />
+  </head>
+  <body>
+    <header>
+      <img src="images/logo.png" alt="Barbershop Logo" class="logo" />
+      <h1>Classic Cuts Barbershop</h1>
+      <nav class="header-nav">
+        <ul>
+          <li><a href="homepage.html">Home</a></li>
+          <li><a href="reservation.html">Reservation</a></li>
+          <li><a href="registration.html">Register</a></li>
+          <li> <a href="account.html" id="accountLink" style="display: none">Account</a></li>
+          <li><a href="login.html" class="active" >Login</a></li>
+          <!-- Initially hidden -->
+        </ul>
+      </nav>
+      <div id="user-info" style="display: none">
+        <span id="user-name"></span>
+        <a href="#" id="logout">Logout</a>
+      </div>
+    </header>
+    <section class="welcome">
+      <h1>Classic Cuts Co.</h1>
+      <h3>Welcome!</h3>
+    </section>
+
+    <div class="triangle triangle-1"></div>
+    <div class="triangle triangle-2"></div>
+    <div class="triangle triangle-3"></div>
+    <div class="triangle triangle-4"></div>
+
+    <div id="error-message" style="color: red"></div>
+    <!-- Place this above the form -->
+
+    <main>
+      <section class="login-section">
+        <form id="loginForm">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Login</button>
+          <p class="register-link">
+            Don't have an account? <a href="registration.html">Register here</a>
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Classic Cuts Barbershop. All rights reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <!-- Include this in all HTML files -->
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent the default form submission
+
+          const formData = new FormData(this);
+          const data = Object.fromEntries(formData);
+
+          fetch("http://localhost:4000/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                return response.json().then((err) => {
+                  throw new Error(err.message); // Use the server error message
+                });
+              }
+              return response.json();
+            })
+            .then((data) => {
+              // Check if login was successful
+              if (data.message === "Login successful") {
+                // Store full user data in local storage
+                localStorage.setItem("user", JSON.stringify(data.user));
+                window.location.href = "account.html"; // Redirect to account interface
+              }
+            })
+            .catch((error) => {
+              console.error(
+                "There was a problem with the fetch operation:",
+                error
+              );
+              document.getElementById("error-message").innerText =
+                error.message; // Display error message
+            });
+
+          // Clear error message after 5 seconds
+          setTimeout(() => {
+            document.getElementById("error-message").innerText = ""; // Clear the error message
+          }, 5000); // Clear after 5 seconds
+        });
+
+      // Check if the user is logged in by looking for user data in local storage
+      window.onload = function () {
+        const user = localStorage.getItem("user");
+        if (user) {
+          // If user data exists, show the account link and user info
+          document.getElementById("accountLink").style.display = "block";
+          const userInfo = JSON.parse(user);
+          document.getElementById(
+            "user-name"
+          ).innerText = `Welcome, ${userInfo.username}`;
+          document.getElementById("user-info").style.display = "block";
+          document.querySelector(
+            "nav .header-nav a[href='login.html']"
+          ).style.display = "none"; // Hide the login link
+        } else {
+          // If no user data, hide account link and user info
+          document.getElementById("accountLink").style.display = "none";
+          document.getElementById("user-info").style.display = "none";
+        }
+
+        // Logout functionality
+        document
+          .getElementById("logout")
+          .addEventListener("click", function () {
+            localStorage.removeItem("user"); // Clear user data from local storage
+            window.location.href = "homepage.html"; // Redirect to homepage after logout
+          });
+      };
+    </script>
+  </body>
+</html>

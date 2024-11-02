@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;        
+}
+
+body {
+    color: #333;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  
+}
+
+header {
+    height: 130px;
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space out logo and navigation */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+    margin-bottom: 50px;
+}
+
+.logo {
+    width: 120px; /* Set logo width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.header-nav {
+    margin-left: auto; /* Push navigation to the right */
+}
+
+.header-nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.header-nav li {
+    margin-left: 20px; /* Space between links */
+    min-width: 80px; /* Ensure consistent width for all list items */
+}
+
+.header-nav a {
+    text-decoration: none; /* Remove underline */
+    color: #fff; /* White text */
+    font-size: 22px;
+    padding: 10px 15px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    transition: color 0.3s; /* Smooth hover effect */
+}
+
+.header-nav a.active {
+    color: #c65102; /* Change text color for the active link */
+    font-weight: bold; /* Make the active link bold */
+}
+
+.header-nav a:hover {
+    color: #c65102; /* Change text color on hover */
+}
+
+.header-nav a[href="login.html"] {
+    margin-right: 30px;
+    background-color: #c65102; /* Dark orange background */
+    color: #fff; /* White text */
+    padding: 10px 20px; /* Padding for button-like appearance */
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color and background */
+}
+
+.header-nav a[href="login.html"]:hover {
+    background-color: #fff; /* Change to white background on hover */
+    color: #c65102; /* Change text to dark orange on hover */
+}
+
+.header-nav a.active {
+    color: #c65102; /* Change text color for the active link */
+    font-weight: bold; /* Make the active link bold */
+    border-bottom: 2px solid #c65102; /* Add underline effect */
+}
+
+.account {
+    width: 80%;
+    max-width: 600px;
+    background: #fff;
+    padding: 40px;
+    margin: 20px auto; /* Center the account form */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.account h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-size: 18px;
+    color: #333;
+}
+
+form input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form input:focus {
+    border-color: #c65102; /* Change border color on focus */
+}
+
+form button {
+    padding: 15px;
+    background-color: #c65102; /* Button color */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+form button:hover {
+    background-color: white; /* Invert background color */
+    color: #c65102; /* Invert text color */
+    border: 1px solid #c65102; /* Add a border to match the hover color */
+}
+
+
+#logout {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #c65102; /* Change to your preferred color */
+}
+
+#logout:hover {
+    text-decoration: underline; /* Underline on hover */
+    cursor: pointer; /* Pointer cursor */
+}   
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Push footer to the bottom */
+}

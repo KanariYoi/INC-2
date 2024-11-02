@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservation - Classic Cuts Barbershop</title>
+    <link rel="stylesheet" href="reservation_style.css" />
+  </head>
+  <body>
+    <header>
+      <img src="images/logo.png" alt="Barbershop Logo" class="logo" />
+      <h1>Classic Cuts Barbershop</h1>
+      <nav class="header-nav">
+        <ul>
+          <li><a href="homepage.html">Home</a></li>
+          <li><a href="reservation.html" class="active">Reservation</a></li>
+          <li><a href="registration.html">Register</a></li>
+          <li>
+            <a href="account.html" id="accountLink" style="display: none"
+              >Account</a
+            >
+          </li>
+          <!-- Initially hidden -->
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+      <div id="user-info" style="display: none">
+        <span id="user-name"></span>
+        <a href="#" id="logout">Logout</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="reservation">
+        <h2>Make a Reservation</h2>
+        <form id="reservationForm">
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="date">Preferred Date:</label>
+          <input type="date" id="date" name="date" required />
+
+          <label for="time">Preferred Time:</label>
+          <input type="time" id="time" name="time" required />
+
+          <label for="service">Service:</label>
+          <select id="service" name="service_id" required>
+            <option value="1" title="A classic haircut tailored to your style.">
+              Haircut
+            </option>
+            <option
+              value="2"
+              title="A precise trim to keep your beard looking sharp."
+            >
+              Beard Trim
+            </option>
+            <option value="3" title="A traditional shave for a smooth finish.">
+              Shave
+            </option>
+          </select>
+
+          <label for="barber">Barber:</label>
+          <select id="barber" name="barber_id" required>
+            <option value="1">Bruno</option>
+            <option value="2">John</option>
+            <option value="3">Laurent</option>
+          </select>
+
+          <button type="submit">Submit Reservation</button>
+        </form>
+        <div
+          id="confirmation-message"
+          style="display: none; margin-top: 20px; color: green; font-size: 18px"
+        >
+          Thank you! Your reservation has been successfully made.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Classic Cuts Barbershop. All rights reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <!-- Include this in all HTML files -->
+
+    <script>
+      // Load user data from local storage and display on page load
+      window.onload = function () {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userInfoElement = document.getElementById("user-info");
+        const userNameElement = document.getElementById("user-name");
+        const accountLinkElement = document.getElementById("accountLink");
+
+        if (user) {
+          // Display user-specific information
+          const displayName = user.fullname || user.username || "Guest";
+          userNameElement.innerText = `Welcome, ${displayName}!`;
+          userInfoElement.style.display = "block";
+          accountLinkElement.style.display = "block";
+          document.querySelector(
+            "nav .header-nav a[href='login.html']"
+          ).style.display = "none"; // Hide login
+        } else {
+          // Hide user-specific information for guests
+          userInfoElement.style.display = "none";
+          accountLinkElement.style.display = "none";
+          userNameElement.innerText = "Welcome, Guest!";
+        }
+      };
+
+      // Logout functionality
+      document.getElementById("logout").addEventListener("click", function (e) {
+        e.preventDefault();
+        localStorage.removeItem("user"); // Clear user data
+        document.getElementById("user-info").style.display = "none";
+        fetch("http://localhost:4000/logout", {
+          method: "POST",
+          credentials: "include",
+        }).then((response) => {
+          if (response.ok) {
+            window.location.href = "login.html"; // Redirect to login page
+          } else {
+            console.error("Logout failed");
+          }
+        });
+      });
+
+      // Handle reservation form submission with customer_id, barber_id, and service_id
+      document
+        .getElementById("reservationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+
+          // Retrieve user data and reservation form details
+          const user = JSON.parse(localStorage.getItem("user"));
+          const formData = new FormData(this);
+          const data = {
+            customer_id: user?.id, // Use customer ID from logged-in user data
+            barber_id: formData.get("barber_id"), // Retrieve barber ID from form
+            service_id: formData.get("service_id"), // Retrieve service ID from form
+            reservation_date: formData.get("date"), // Corrected from reservation_date
+            reservation_time: formData.get("time"), // Corrected from reservation_time
+            name: formData.get("name"),
+            phone: formData.get("phone"),
+            email: formData.get("email"),
+          };
+
+          console.log("Submitting reservation with data:", data); // Debug statement
+
+          // Send reservation data to the server
+          fetch("http://localhost:4000/reservations", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+            credentials: "include", // Important for session persistence
+          })
+            .then((response) => {
+              if (response.ok) {
+                document.getElementById("confirmation-message").style.display =
+                  "block"; // Show confirmation
+                console.log("Reservation successful"); // Debug statement
+                this.reset(); // Reset form after submission
+              } else if (response.status === 409) {
+                alert("This time/date has already been booked."); // Alert for booked date/time
+              } else {
+                return response.json().then((err) => {
+                  console.error("Reservation failed:", err); // Log error details
+                  alert(
+                    "Reservation failed: " + (err.message || "Unknown error")
+                  );
+                });
+              }
+            })
+            .catch((error) => {
+              console.error("Error during fetch:", error); // Log fetch error
+              alert("An error occurred while submitting the reservation.");
+            });
+        });
+    </script>
+  </body>
+</html>

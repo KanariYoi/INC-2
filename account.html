@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Interface</title>
+    <link rel="stylesheet" href="account_style.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Barbershop Logo" class="logo">
+        <h1>Classic Cuts Barbershop</h1>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li><a href="registration.html">Register</a></li>
+                <li><a href="account.html" id="accountLink" class = 'active'>Account</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+        <div id="user-info" style="display: none">
+            <span id="user-name"></span>
+            <a href="#" id="logout">Logout</a>
+        </div>
+    </header>
+    
+    <main>
+        <section class="account">
+            <h2> Your Account Information</h2>
+            <form id="accountForm">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="name" name="fullname" >
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" >
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" >
+
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" >
+
+                <button type="submit">Update</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="account.js"></script> 
+
+    <footer>
+        <p>&copy; 2024 Classic Cuts Barbershop. All rights reserved.</p>
+    </footer>
+</body>
+</html>
