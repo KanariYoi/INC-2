@@ -16,7 +16,11 @@ const upload = multer(); // Initialize multer
 const PORT = 4000; // Your server port
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: 'http://127.0.0.1:5500', // Allow all origins for testing
+    methods: ['POST', 'GET', 'PUT'],
+    credentials: true,
+  }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
